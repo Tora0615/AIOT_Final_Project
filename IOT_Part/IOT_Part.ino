@@ -7,30 +7,15 @@ const char *host = "123.204.234.29";
 void setup() {
   // LED Setup
   pinMode(LED_BUILTIN, OUTPUT);
-  // Serial Setup
-  Serial.begin(115200);
-  delay(10);
   // Relay Setup
   pinMode(D5, OUTPUT);
   
-  // Wifi Setup and show result
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
-  
+  // Wifi Setup 
   WiFi.begin(ssid, password); // connect to wifi
-  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
   }
   
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
-  Serial.println("--------------------");
 }
 
 void loop() {
@@ -38,26 +23,17 @@ void loop() {
   delay(5000);
 
   /* Connect to host */
-  // print info 
-  Serial.print("connecting to ");
-  Serial.println(host);
 
-  // connect and show info 
+  // connect 
   WiFiClient client;
   const int httpPort = 5000;
   if (!client.connect(host, httpPort)) {
-    Serial.println("connection failed");
     return;
-  }else{
-    Serial.println("connection successed");
   }
 
   /* Form host to get url's data*/
-  // setup variable and print info
+  // setup variable 
   String url = "/aiot";
-  Serial.print("Requesting URL: ");
-  Serial.println(url);
-  Serial.println();
 
   /* send and get data (print function is used to send data to the connected server) */
   client.print(String("GET ") + url + " HTTP/1.1\r\n" +
@@ -66,12 +42,10 @@ void loop() {
   delay(1000);  // need to wait data back (this seems to be multi-thread action)
   
   /* process the data */
-  Serial.println("Recieved data : ");
   while(client.available()){                      // if havn't read to the end
     
     String line = client.readStringUntil('\r');   // read line
     line.trim();                                  // eat useless part of string such as space
-    Serial.println(line);
 
     // if data match target string (true/false)
     if (line.equals("true")){           
@@ -110,5 +84,4 @@ void loop() {
       delay(125);                    
     }
  }  
- Serial.println("--------------------");
 }
