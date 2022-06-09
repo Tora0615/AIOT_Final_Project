@@ -41,47 +41,25 @@ void loop() {
   "Connection: close\r\n\r\n");
   delay(1000);  // need to wait data back (this seems to be multi-thread action)
   
-  /* process the data */
+  /* process the data, control relay and show the light*/
   while(client.available()){                      // if havn't read to the end
-    
+    // show the light
+    digitalWrite(LED_BUILTIN, LOW); 
+    delay(125); 
+    digitalWrite(LED_BUILTIN, HIGH);          
+    delay(125); 
+
+    // read data line by line
     String line = client.readStringUntil('\r');   // read line
     line.trim();                                  // eat useless part of string such as space
 
     // if data match target string (true/false)
     if (line.equals("true")){           
       // open the pump (Don't need delay)   (circuit conncet to nornal close (preset running the pump))
-      digitalWrite(D5,LOW);                     // LOW let relay switch to nornal close, then the pump start
-
-      // show the light
-      digitalWrite(LED_BUILTIN, LOW);           // long and slow bright 
-      delay(500);  
-      digitalWrite(LED_BUILTIN, HIGH);          
-      delay(500);                       
-      // digitalWrite(LED_BUILTIN, LOW); 
-      // delay(1000);  
-      // digitalWrite(LED_BUILTIN, HIGH);          
-      // delay(1000);                       
+      digitalWrite(D5,LOW);                     // LOW let relay switch to nornal close, then the pump start                   
     }else if (line.equals("false")){
       // close the pump (Don't need delay)   (circuit conncet to nornal close (preset running the pump))
-      digitalWrite(D5,HIGH);                    // HIGH let relay switch to nornal open, then the pump stop
-
-      // show the light
-      digitalWrite(LED_BUILTIN, LOW);           // short and quick bright 
-      delay(125); 
-      digitalWrite(LED_BUILTIN, HIGH);          
-      delay(125);                       
-      digitalWrite(LED_BUILTIN, LOW); 
-      delay(125); 
-      digitalWrite(LED_BUILTIN, HIGH);          
-      delay(125);                       
-      digitalWrite(LED_BUILTIN, LOW); 
-      delay(125); 
-      digitalWrite(LED_BUILTIN, HIGH);          
-      delay(125);                       
-      digitalWrite(LED_BUILTIN, LOW); 
-      delay(125); 
-      digitalWrite(LED_BUILTIN, HIGH);           
-      delay(125);                    
+      digitalWrite(D5,HIGH);                    // HIGH let relay switch to nornal open, then the pump stop                  
     }
  }  
 }
