@@ -30,7 +30,10 @@ Unfortunately, we don't have these sensors, so use website send data to simulate
 
 ## Division of labor and special thanks ❤️
 
-@luder624 -- Speaker
-@FeHeap -- Backend Developer
-@jhaorong -- AI trainer
+[@luder624](https://github.com/luder624) -- Speaker
+
+[@FeHeap](https://github.com/FeHeap) -- Backend Developer
+
+[@jhaorong](https://github.com/jhaorong) -- AI trainer
+
 me -- IOT system designer
