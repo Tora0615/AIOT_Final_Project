@@ -28,6 +28,9 @@ Unfortunately, we don't have these sensors, so use website send data to simulate
 
 <https://youtu.be/qgEsq-HO2BE?t=636>
 
+![截圖 2023-02-22 下午7 18 07](https://user-images.githubusercontent.com/33981880/220605356-b2c52682-d726-4eb0-b9b4-c87365399431.png)
+
+
 ## Division of labor and special thanks ❤️
 
 [@luder624](https://github.com/luder624) -- Speaker
