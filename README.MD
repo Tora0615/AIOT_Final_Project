@@ -1,4 +1,4 @@
-# NCHU AIOT Class' final project  
+# SmartPump (NCHU AIOT Class' final project)  
 
 ## Main Idea
 
